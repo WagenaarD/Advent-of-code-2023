@@ -15,6 +15,7 @@ import math
             
 @print_function()
 def main(input: 'list[str]'):
+    # Make lists of all digits, gears and symbols. Digits include a list of all bounding box coords
     digits = []
     gears = []
     symbols = []
@@ -24,16 +25,11 @@ def main(input: 'list[str]'):
                 gears.append((r, c))
             if char not in '1234567890.':
                 symbols.append((r, c))
-            # if not the start of a number, ignore this cell
-            if not char.isdigit():
-                continue
-            if c > 0 and line[c-1].isdigit():
-                continue
-            # get total number
-            value_str = re.search('\d+', input[r][c:]).group()
+        for re_match in re.finditer('\d+', line):
+            value_str = re_match.group()
+            c = re_match.start()
             value = int(value_str)
-            # add digit
-            digits.append((value, [(r + rr, c + cc) for rr in (-1,0,1) for cc in range(-1, 1+len(value_str))]))
+            digits.append((value, [(r + rr, c + cc) for rr in (-1,0,1) for cc in range(-1,1+len(value_str))]))
     # Scoring
     score_p1 = 0
     for dig in digits:
