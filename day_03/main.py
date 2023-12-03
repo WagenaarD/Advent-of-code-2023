@@ -38,7 +38,6 @@ def main(input: 'list[str]'):
     score_p1 = 0
     for dig in digits:
         adjacent = [sym for sym in symbols if sym in dig[1]]
-        print(bool(adjacent), dig[0], dig[1])
         if adjacent:
             score_p1 += dig[0]
     score_p2 = 0
