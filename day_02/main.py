@@ -42,5 +42,3 @@ if __name__ == '__main__':
     lines = sys.stdin.read().strip().split('\n')
     main(lines)
     
-        
-

@@ -17,7 +17,15 @@ import re
 import numpy as np
 from pprint import pprint
 from functools import cache
+import math
 
 
-lines = sys.stdin.read().strip().split('\n')
+@print_function()
+def main(lines):
+    pass
+
+if __name__ == '__main__':
+    """Executed if file is executed but not if file is imported."""
+    lines = sys.stdin.read().strip().split('\n')
+    main(lines)
 
