@@ -13,7 +13,7 @@ from _utils.print_function import print_function
 
 
 @print_function()
-def main(lines: 'list[str]') -> int:
+def main(lines: 'list[str]') -> 'tuple(int, int)':
     score_p1, score_p2 = 0, [1] * len(lines)
     for idx, line in enumerate(lines):
         left, right = line.split(': ')[1].split('|')
