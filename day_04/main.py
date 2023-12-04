@@ -18,10 +18,10 @@ def main(lines: 'list[str]') -> int:
     for idx, line in enumerate(lines):
         left, right = line.split(': ')[1].split('|')
         correct = len(set(left.split()) & set(right.split()))
-        for idx2 in range(idx+1, idx+correct+1):
-            score_p2[idx2] += score_p2[idx]
         if correct:
             score_p1 += 2 ** (correct - 1)
+        for idx2 in range(idx+1, idx+correct+1):
+            score_p2[idx2] += score_p2[idx]
     return score_p1, sum(score_p2)
 
 
