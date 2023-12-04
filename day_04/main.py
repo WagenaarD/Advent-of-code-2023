@@ -13,30 +13,20 @@ from _utils.print_function import print_function
 
 
 @print_function()
-def part_one(lines: 'list[str]') -> int:
-    score = 0
-    for line in lines:
-        left, right = line.split(': ')[1].split('|')
-        correct = len(set(left.split()) & set(right.split()))
-        if correct:
-            score += 2 ** (correct - 1)
-    return score
-
-
-@print_function()
-def part_two(lines: 'list[str]') -> int:
-    score = [1] * len(lines)
+def main(lines: 'list[str]') -> int:
+    score_p1, score_p2 = 0, [1] * len(lines)
     for idx, line in enumerate(lines):
         left, right = line.split(': ')[1].split('|')
         correct = len(set(left.split()) & set(right.split()))
         for idx2 in range(idx+1, idx+correct+1):
-            score[idx2] += score[idx]
-    return sum(score)
+            score_p2[idx2] += score_p2[idx]
+        if correct:
+            score_p1 += 2 ** (correct - 1)
+    return score_p1, sum(score_p2)
 
 
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
     lines = sys.stdin.read().strip().split('\n')
-    part_one(lines)
-    part_two(lines)
+    main(lines)
 
