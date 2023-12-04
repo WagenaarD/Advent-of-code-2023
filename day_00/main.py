@@ -21,11 +21,11 @@ import math
 
 
 @print_function()
-def main(lines):
+def part_one(lines):
     pass
 
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
     lines = sys.stdin.read().strip().split('\n')
-    main(lines)
+    part_one(lines)
 
