@@ -10,20 +10,14 @@ Cleanup -
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
 from _utils.print_function import print_function
-from collections import defaultdict
-import re
 
-
-def read_card(line: str) -> 'tuple(int, int)':
-    card_str, rest = line.split(': ')
-    left, right = rest.split(' | ')
-    return (int(card_str[5:]), len(set(left.split()) & set(right.split())))
 
 @print_function()
 def part_one(lines: 'list[str]') -> int:
     score = 0
     for line in lines:
-        _, correct = read_card(line)
+        left, right = line.split(': ')[1].split('|')
+        correct = len(set(left.split()) & set(right.split()))
         if correct:
             score += 2 ** (correct - 1)
     return score
@@ -31,16 +25,13 @@ def part_one(lines: 'list[str]') -> int:
 
 @print_function()
 def part_two(lines: 'list[str]') -> int:
-    score = 0
-    stack = defaultdict(int, {line: 1 for line in lines})
-    while stack:
-        line = list(stack)[0]
-        count = stack.pop(line)
-        score += count
-        card_idx, correct = read_card(line)
-        for idx in range(0, correct):
-            stack[lines[card_idx + idx]] += count
-    return score
+    score = [1] * len(lines)
+    for idx, line in enumerate(lines):
+        left, right = line.split(': ')[1].split('|')
+        correct = len(set(left.split()) & set(right.split()))
+        for idx2 in range(idx+1, idx+correct+1):
+            score[idx2] += score[idx]
+    return sum(score)
 
 
 if __name__ == '__main__':
