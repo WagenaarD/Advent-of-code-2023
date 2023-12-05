@@ -1,4 +1,5 @@
 .*
 *.pyc
 /_utils/aoc_session_cookie.sh
+/_utils/aoc_session_cookie.json
 **/in
