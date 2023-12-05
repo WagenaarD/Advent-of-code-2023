@@ -1,3 +1,4 @@
+.*
 *.pyc
 /_utils/aoc_session_cookie.sh
 **/in
