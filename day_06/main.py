@@ -31,11 +31,11 @@ def part_one(lines):
     for time, dist in zip(times, dists):
         solutions = 0
         for button_time in range(time):
-            speed = button_time
-            time_left = time - button_time
-            new_dist = speed * time_left
-            if new_dist > dist:
-                solutions += 1
+            # speed = button_time
+            # time_left = time - button_time
+            # new_dist = speed * time_left
+            # if new_dist > dist: solutions += 1
+            solutions += button_time * (time - button_time) > dist
         ans *= solutions
     return ans
 
@@ -59,10 +59,23 @@ def part_two(lines):
     ans = math.floor(range_end) - math.ceil(range_start)
     return ans
 
+@print_function()
+def part_two_brute_1(lines):
+    time = int(''.join(lines[0].split()[1:]))
+    dist = int(''.join(lines[1].split()[1:]))
+    ans = 0
+    for button_time in range(time):
+        ans += button_time * (time - button_time) > dist
+    return ans
+
 
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
     lines = sys.stdin.read().strip().split('\n')
     part_one(lines)
     part_two(lines)
+    part_two_brute_1(lines)
+    # part_one(...) = 140220 (2.5e-05 s)
+    # part_two(...) = 39570184 (5e-06 s)
+    # part_two_brute_1(...) = 39570185 (3.11231 s)
 
