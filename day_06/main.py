@@ -39,12 +39,6 @@ def part_one(lines):
         ans *= solutions
     return ans
 
-def is_winning(button_time, record_time, record_dist):
-    speed = button_time
-    time_left = record_time - button_time
-    new_dist = speed * time_left
-    return new_dist > record_dist
-
 @print_function()
 def part_two(lines):
     record_time = int(''.join(lines[0].split()[1:]))
