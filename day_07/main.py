@@ -12,7 +12,6 @@ python3 main.py < in
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
 from _utils.print_function import print_function
-from functools import cmp_to_key
 from collections import Counter
 
 
