@@ -1,6 +1,6 @@
 """
 Advent of code challenge 2023
-python3 ../_utils/get_aoc_in.py
+python3 ../../aoc_tools/get_aoc_in.py
 python3 main.py < in
 """
 # Start, Part 1, Part 2
@@ -9,7 +9,7 @@ python3 main.py < in
 # 08:27:11
 
 import sys
-sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
+sys.path.append('..')
 from aoc_tools import print_function
 import math
 
