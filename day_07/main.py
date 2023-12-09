@@ -17,7 +17,7 @@ from collections import Counter
 
 
 HAND_RANKS = [[1,1,1,1,1], [2,1,1,1], [2,2,1], [3,1,1], [3,2], [4,1], [5]]
-CARDS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
+KICKER_RANKS = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A']
 
 
 class Hand:
@@ -25,7 +25,7 @@ class Hand:
         self.hand: str = hand
 
     def strength(self, joker = '_') -> 'tuple(int, int, int, int, int, int)':
-        kicker_rankings = [joker] + CARDS
+        kicker_rankings = [joker] + KICKER_RANKS
         joker_count = self.hand.count(joker)
         hand = self.hand.replace(joker, '')
         counts = sorted(Counter(hand).values(), reverse = True)
