@@ -1,25 +1,28 @@
 """
 Advent of code challenge 2023
->> python3 main.py < in
-Start   - 09:26:18
-Part 1  - 09:38:09  11:51   07:09 (my time vs. leaderboard)
-Part 2  - 09:47:59  21:41   11:37
-Cleanup - 10:49:56
+python3 ../_utils/get_aoc_in.py
+python3 main.py < in
 """
+# Start, Part 1, Part 2
+# 09:26:18
+# 09:38:09  11:51
+# 09:47:59  21:41
 
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
-from _utils.print_function import print_function
+from aoc_tools import print_function
 import re
 import math
+
+AOC_ANSWER = (557705, 84266818)
             
 @print_function()
-def main(input: 'list[str]'):
+def main(input: 'str'):
     # Make lists of all digits, gears and symbols. Digits include a list of all bounding box coords
     digits = []
     gears = []
     symbols = []
-    for r, line in enumerate(lines):
+    for r, line in enumerate(input.split('\n')):
         for c, char in enumerate(line):
             if char == '*':
                 gears.append((r, c))
@@ -44,8 +47,8 @@ def main(input: 'list[str]'):
 
     return (score_p1, score_p2)
 
+
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
-    lines = sys.stdin.read().strip().split('\n')
-
-    main(lines)
+    input = sys.stdin.read().strip()
+    print('  ->', main(input) == (AOC_ANSWER[0], AOC_ANSWER[1]))

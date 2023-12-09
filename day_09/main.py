@@ -8,19 +8,21 @@ python3 main.py < in
 # 08:46:41 -teken vergeten bij regex, anders klaar na 8 min.
 # 11:23:22 met pauze
 
+AOC_ANSWER = (1702218515, 925)
+
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
 from aoc_tools import print_function
 
-
 @print_function()
-def main(lines):
-    score_p1 = 0
-    score_p2 = 0
-    for line in lines:
+def main(input: str) -> 'tuple(int, int)':
+    score_p1, score_p2 = 0, 0
+    for line in input.split('\n'):
         deriv_lines = [list(map(int, line.split()))]
         while not all(num == 0 for num in deriv_lines[-1]):
-            deriv_lines.append([second-first for first, second in zip(deriv_lines[-1], deriv_lines[-1][1:])])
+            deriv_lines.append([n2-n1 for n1, n2 in zip(deriv_lines[-1], deriv_lines[-1][1:])])
+        # score_p1 += sum([deriv[-1] for deriv in deriv_lines])
+        # score_p2 += sum([(-1)**idx * deriv[0] for idx, deriv in enumerate(deriv_lines)])
         extra_last = 0
         extra_first = 0
         for deriv in deriv_lines[::-1]:
@@ -33,6 +35,6 @@ def main(lines):
 
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
-    lines = sys.stdin.read().strip().split('\n')
-    print(main(lines) == (1702218515, 925))
+    input = sys.stdin.read().strip()
+    print('  ->', main(input) == (AOC_ANSWER[0], AOC_ANSWER[1]))
 

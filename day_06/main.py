@@ -1,29 +1,20 @@
 """
 Advent of code challenge 2023
->> python3 main.py < in
-Start   - 
-Part 1  - 
-Part 2  - 
-Cleanup - 
+python3 ../_utils/get_aoc_in.py
+python3 main.py < in
 """
+# Start, Part 1, Part 2
 # 08:06:21
 # 08:12:40
 # 08:27:11
 
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
-from _utils.print_function import print_function
-import itertools as it
-from dataclasses import dataclass, field
-from collections import defaultdict
-import re
-import numpy as np
-from pprint import pprint
-from functools import cache
+from aoc_tools import print_function
 import math
 
+AOC_ANSWER = (140220, 39570184)
 
-@print_function()
 def part_one(lines):
     times = map(int, lines[0].split()[1:])
     dists = map(int, lines[1].split()[1:])
@@ -39,7 +30,6 @@ def part_one(lines):
         ans *= solutions
     return ans
 
-@print_function()
 def part_two(lines):
     record_time = int(''.join(lines[0].split()[1:]))
     record_dist = int(''.join(lines[1].split()[1:]))
@@ -59,7 +49,6 @@ def part_two(lines):
     ans = math.floor(range_end) - math.ceil(range_start)
     return ans
 
-@print_function()
 def part_two_brute_1(lines):
     time = int(''.join(lines[0].split()[1:]))
     dist = int(''.join(lines[1].split()[1:]))
@@ -69,13 +58,13 @@ def part_two_brute_1(lines):
     return ans
 
 
+@print_function()
+def main(input: str) -> 'tuple(int, int)':
+    lines = input.split('\n')
+    return (part_one(lines), part_two(lines))
+
+
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
-    lines = sys.stdin.read().strip().split('\n')
-    part_one(lines)
-    part_two(lines)
-    part_two_brute_1(lines)
-    # part_one(...) = 140220 (2.5e-05 s)
-    # part_two(...) = 39570184 (5e-06 s)
-    # part_two_brute_1(...) = 39570185 (3.11231 s)
-
+    input = sys.stdin.read().strip()
+    print('  ->', main(input) == (AOC_ANSWER[0], AOC_ANSWER[1]))

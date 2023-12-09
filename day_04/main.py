@@ -1,19 +1,23 @@
 """
 Advent of code challenge 2023
 >> python3 main.py < in
-Start   - 07:59:34
-Part 1  - 08:04:15
-Part 2  - 08:13:14  13:40   07:08
-Cleanup - 
+python3 ../_utils/get_aoc_in.py
+python3 main.py < in
 """
+# Start, Part 1, Part 2
+# 07:59:34
+# 08:04:15
+# 08:13:14  13:40   07:08
 
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
-from _utils.print_function import print_function
+from aoc_tools import print_function
 
+AOC_ANSWER = (21485, 11024379)
 
 @print_function()
-def main(lines: 'list[str]') -> 'tuple(int, int)':
+def main(input: str) -> 'tuple(int, int)':
+    lines = input.split('\n')
     score_p1, score_p2 = 0, [1] * len(lines)
     for idx, line in enumerate(lines):
         left, right = line.split(': ')[1].split('|')
@@ -27,6 +31,5 @@ def main(lines: 'list[str]') -> 'tuple(int, int)':
 
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
-    lines = sys.stdin.read().strip().split('\n')
-    main(lines)
-
+    input = sys.stdin.read().strip()
+    print('  ->', main(input) == (AOC_ANSWER[0], AOC_ANSWER[1]))

@@ -1,22 +1,24 @@
 """
 Advent of code challenge 2023
 >> python3 main.py < in
-Start   - 08:02:04
-Part 1  - 08:32:37
-Part 2  - 16:10:27
-Cleanup - 
+python3 ../_utils/get_aoc_in.py
+python3 main.py < in
 """
+# Start, Part 1, Part 2
+# 08:02:04
+# 08:32:37
+# 16:10:27
 
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
-from _utils.print_function import print_function
+from aoc_tools import print_function
 import re
 from collections import namedtuple
 SeedRange = namedtuple('SeedRange', ('start', 'end'))
 LutRange = namedtuple('LutRange', ('start', 'end', 'offset'))
 
+AOC_ANSWER = (309796150, 50716416)
 
-@print_function()
 def part_one(lines):
     seeds = map(int, re.findall('\d+', lines[0]))
     luts = []
@@ -37,7 +39,6 @@ def part_one(lines):
         p1.append(pos)
     return min(p1)
 
-@print_function()
 def part_two(lines: 'list[str]') -> int:
     seed_ranges = [tuple(map(int, pair.split())) for pair in re.findall('\d+ \d+', lines[0])]
     seed_ranges = {SeedRange(start, start + length) for start, length in seed_ranges}
@@ -70,9 +71,13 @@ def part_two(lines: 'list[str]') -> int:
     return min([num[0] for num in seed_ranges])
                 
 
+@print_function()
+def main(input: str) -> 'tuple(int, int)':
+    lines = input.split('\n')
+    return (part_one(lines), part_two(lines))
+
 
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
-    lines = sys.stdin.read().strip().split('\n')
-    part_one(lines)
-    part_two(lines)
+    input = sys.stdin.read().strip()
+    print('  ->', main(input) == (AOC_ANSWER[0], AOC_ANSWER[1]))

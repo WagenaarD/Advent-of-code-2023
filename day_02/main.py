@@ -1,18 +1,19 @@
 """
 Advent of code challenge 2023
+python3 ../_utils/get_aoc_in.py
 python3 main.py < in
-python3 main.py < ex
-
-Start   - 10:04:07
-Part 1  - 10:17:42 (leaderboard 04:10)
-Part 2  - 10:22:06 (leaderboard filled in 06:15)
 """
+# Start, Part 1, Part 2
+# 10:04:07
+# 10:17:42 (leaderboard 04:10)
+# 10:22:06 (leaderboard filled in 06:15)
 
 import sys
 sys.path.insert(0, '/'.join(__file__.replace('\\', '/').split('/')[:-2]))
-from _utils.print_function import print_function
+from aoc_tools import print_function
 import math
 
+AOC_ANSWER = (1931, 83105)
 BAG_CONFIG = {
     'red': 12,
     'green': 13,
@@ -20,10 +21,10 @@ BAG_CONFIG = {
 }
 
 @print_function()
-def main(lines):
+def main(input):
     score_p1 = 0
     score_p2 = 0
-    for idx, line in enumerate(lines):
+    for idx, line in enumerate(input.split('\n')):
         _, sets_str = line.split(': ')
         legal_p1 = True
         min_p2 = {key: 0 for key in BAG_CONFIG}
@@ -39,6 +40,6 @@ def main(lines):
     
 if __name__ == '__main__':
     """Executed if file is executed but not if file is imported."""
-    lines = sys.stdin.read().strip().split('\n')
-    main(lines)
+    input = sys.stdin.read().strip()
+    print('  ->', main(input) == (AOC_ANSWER[0], AOC_ANSWER[1]))
     
