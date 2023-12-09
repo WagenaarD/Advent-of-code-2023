@@ -21,6 +21,7 @@ def main(input: str) -> 'tuple(int, int)':
         deriv_lines = [list(map(int, line.split()))]
         while not all(num == 0 for num in deriv_lines[-1]):
             deriv_lines.append([n2-n1 for n1, n2 in zip(deriv_lines[-1], deriv_lines[-1][1:])])
+        # These two lines replace the rest of the code but are slightly slower and more complex:
         # score_p1 += sum([deriv[-1] for deriv in deriv_lines])
         # score_p2 += sum([(-1)**idx * deriv[0] for idx, deriv in enumerate(deriv_lines)])
         extra_last = 0
